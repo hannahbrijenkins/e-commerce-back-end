@@ -45,17 +45,9 @@ router.post('/', (req, res) => {
       stock: req.body.stock,
       tag_id: req.body.tag_id
   })
-  .then(newProduct => res.json(newProduct))
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);    
-  });
-});
-    
-  Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-      if (req.body.tagIds.length) {
+      if (req.body.tag_id) {
         const productTagIdArr = req.body.tagIds.map((tag_id) => {
           return {
             product_id: product.id,
@@ -71,7 +63,8 @@ router.post('/', (req, res) => {
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);
-    });
+    })
+  });
 
 // update product
 router.put('/:id', (req, res) => {
