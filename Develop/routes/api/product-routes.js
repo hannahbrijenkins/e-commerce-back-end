@@ -21,6 +21,7 @@ router.post('/', (req, res) => {
     {
       product_name: "Basketball",
       price: 200.00,
+      category_id,
       stock: 3,
       tagIds: [1, 2, 3, 4]
     }
